@@ -1,3 +1,26 @@
+set echo off
+clear screen
+
+
+-- Drop selection
+drop table USER
+drop table BOOK
+drop table EDITION
+drop table COPY
+drop table LOAN
+drop table RESERVATION
+drop table SANCTION
+drop table COMMENT
+drop table BIBUS
+drop table DRIVER
+drop table ROUTE
+drop table MUNICIPALITY
+drop table MUNICIPAL_LIBRARY
+drop table ROUTE_MUNICIPALITY
+drop table BIBUS_ROUTE
+
+
+
 -- USER Table
 CREATE TABLE USER (
     UserID CHAR(10) NOT NULL,
