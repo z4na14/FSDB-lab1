@@ -42,7 +42,8 @@ CREATE TABLE BOOK (
     Alt_Authors VARCHAR2(200),
     Edition CHAR(13) NOT NULL,
     Copy CHAR(20) NOT NULL,
-    CONSTRAINT PK_Book PRIMARY KEY (Title, Edition, Copy)
+    CONSTRAINT PK_Book PRIMARY KEY (Title, Edition, Copy),
+    CONSTRAINT FK_Book_Edition FOREIGN KEY (Edition) REFERENCES EDITION(ISBN) ON DELETE CASCADE
 );
 
 -- EDITION Table
