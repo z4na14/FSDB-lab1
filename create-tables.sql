@@ -1,23 +1,22 @@
-set echo off
 clear screen
 
 
 -- Drop selection
-drop table USERS
-drop table BOOKS
-drop table EDITIONS
-drop table COPIES
-drop table LOAN
-drop table RESERVATION
-drop table SANCTION
-drop table COMMENTS
-drop table BIBUS
-drop table DRIVER
-drop table ROUTES
-drop table MUNICIPALITY
-drop table MUNICIPAL_LIBRARY
-drop table ROUTE_MUNICIPALITY
 drop table BIBUS_ROUTE
+drop table ROUTE_MUNICIPALITY
+drop table MUNICIPAL_LIBRARY
+drop table MUNICIPALITY
+drop table ROUTES
+drop table DRIVER
+drop table BIBUS
+drop table COMMENTS
+drop table SANCTION
+drop table RESERVATION
+drop table LOAN
+drop table COPIES
+drop table EDITIONS
+drop table BOOKS
+drop table USERS
 
 
 
