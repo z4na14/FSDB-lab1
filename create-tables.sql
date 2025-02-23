@@ -2,21 +2,21 @@ clear screen
 
 
 -- Drop selection
-drop table BIBUS_ROUTE
-drop table ROUTE_MUNICIPALITY
-drop table MUNICIPAL_LIBRARY
-drop table MUNICIPALITY
-drop table ROUTES
-drop table DRIVER
-drop table BIBUS
-drop table COMMENTS
-drop table SANCTION
-drop table RESERVATION
-drop table LOAN
-drop table COPIES
-drop table EDITIONS
-drop table BOOKS
-drop table USERS
+drop table BIBUS_ROUTE;
+drop table ROUTE_MUNICIPALITY;
+drop table MUNICIPAL_LIBRARY;
+drop table MUNICIPALITY;
+drop table ROUTES;
+drop table DRIVER;
+drop table BIBUS;
+drop table COMMENTS;
+drop table SANCTION;
+drop table RESERVATION;
+drop table LOAN;
+drop table COPIES;
+drop table EDITIONS;
+drop table BOOKS;
+drop table USERS;
 
 
 
