@@ -23,7 +23,7 @@ drop table USERS;
 -- USERS Table
 CREATE TABLE USERS (
     UserID CHAR(10) NOT NULL,
-    FullName VARCHAR2(100) NOT NULL,
+    FullName VARCHAR2(240) NOT NULL,
     Passport CHAR(20) UNIQUE NOT NULL,
     BirthDate DATE NOT NULL,
     Municipality VARCHAR2(50) NOT NULL,
