@@ -23,7 +23,6 @@ insert into users
     and town is not null
     and address is not null
     and phone is not null
-    and birthdate <> '29-02-1970'
   ;
 
 
