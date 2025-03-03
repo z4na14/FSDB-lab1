@@ -66,6 +66,109 @@ insert into books
 --Copies
 insert into copies
   select distinct
+    signature,
+    null,
+    to_date(pub_date, 'DD-MM-YYYY'),
+    edition,
+    notes
+    from fsdb.acervus
+    where
+    signature is not null
+    and edition is not null
+
+
+--Loans
+insert into loan(loanId, copy)
+  select distinct
+    null,
+    signature,
+  from fsdb.acervus
+  where
+    and signature is not null
+and insert into loan(users, loanDate, ReturnDate)
+  select distinct
+    user_id,
+    to_date(date_time, 'DD-MM-YYYY'),
+    to_date(return,  'DD-MM-YYYY')
+  from fsdb.loans
+  where
+    date_time is not null
+    and return is not null
+;
+
+--Reservation
+insert into Reservation(ReservationId, copy, reservationDate)
+  select distinct
+    null,
+    signature,
+    null,
+  from fsdb.acervus
+  where
+    signature is not null
+  
+  and insert into Reservation(users)
+  user_id
+  from fsdb.loans
+  where 
+    user_id is not null
+;
+
+--Sanction
+insert into sanction(users)
+  select distinct
+    user_id
+  from fsdb.loans
+  where
+    user_id is not null
+;
+
+--Comments
+insert into comments(users, text)
+  user_id,
+  post
+  from fsdb.loans
+  where
+  user_id is not null
+  and post is not null
+;
+
+--Bibus
+insert into bibus
+  plate,
+  to_date(last_itv, 'DD-MM-YYYY'),
+  to_date(next_itv, 'DD-MM-YYYY')
+  from fsdb.busstops
+  where
+  plate is not null
+  and last_itv is not null
+  and next_itv is not null
+;
+
+--Drive
+insert into driver
+  lib_fullname,
+  lib_passport,
+  lib_phone,
+  lib_email,
+  to_date(cont_start, 'DD-MM-YYYY'),
+  to_date(cont_end, 'DD-MM-YYYY'),
+  null
+  where
+  lib_fullname is not null
+  and lib_passport is not null
+  and lib_phone is not null
+  and lib_email is not null
+  and cont_start is not null
+  and cont_end is not null
+  ;
+
+--Routes
+insert into Routes
+  
+
+
+
+
     
 
 
