@@ -14,8 +14,8 @@ drop table SANCTION;
 drop table RESERVATION;
 drop table LOAN;
 drop table COPIES;
-drop table EDITIONS;
 drop table BOOKS;
+drop table EDITIONS;
 drop table USERS;
 
 
