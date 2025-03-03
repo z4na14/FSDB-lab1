@@ -19,6 +19,7 @@ insert into users
     and surname1 is not null
     and passport is not null
     and birthdate is not null
+    and birthdate != "29-02-1970"
     and town is not null
     and address is not null
     and phone is not null
