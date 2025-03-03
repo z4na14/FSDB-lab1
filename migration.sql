@@ -22,6 +22,7 @@ insert into users
     and town is not null
     and address is not null
     and phone is not null
+    and birthdate <> '29-02-1970'
   ;
 
 
@@ -124,8 +125,9 @@ insert into sanction(users)
 
 --Comments
 insert into comments(users, text)
-  user_id,
-  post
+  select distinct
+    user_id,
+    post
   from fsdb.loans
   where
   user_id is not null
@@ -134,9 +136,10 @@ insert into comments(users, text)
 
 --Bibus
 insert into bibus
-  plate,
-  to_date(last_itv, 'DD-MM-YYYY'),
-  to_date(next_itv, 'DD-MM-YYYY')
+  select distinct
+    plate,
+    to_date(last_itv, 'DD-MM-YYYY'),
+    to_date(next_itv, 'DD-MM-YYYY')
   from fsdb.busstops
   where
   plate is not null
@@ -146,13 +149,14 @@ insert into bibus
 
 --Drive
 insert into driver
-  lib_fullname,
-  lib_passport,
-  lib_phone,
-  lib_email,
-  to_date(cont_start, 'DD-MM-YYYY'),
-  to_date(cont_end, 'DD-MM-YYYY'),
-  null
+  select distinct
+    lib_fullname,
+    lib_passport,
+    lib_phone,
+    lib_email,
+    to_date(cont_start, 'DD-MM-YYYY'),
+    to_date(cont_end, 'DD-MM-YYYY'),
+    null
   where
   lib_fullname is not null
   and lib_passport is not null
@@ -164,6 +168,58 @@ insert into driver
 
 --Routes
 insert into Routes
+  select distinct
+  route_id,
+    null
+  from fsdb.busstops
+  where
+    route_id is not null
+;
+
+insert into municipality
+  select 
+    town,
+    population,
+    has_library
+  from fsdb.busstops
+  where
+    town is not null
+    and population is not null
+    and has_library is not null
+  ;
+
+insert into municipal_library(municipality, address)
+  select distinct
+    town,
+    address
+  from fsdb.busstops
+  where
+    town is not null
+    and address is not null
+;
+
+insert into route_municipality
+  select distinct
+    route_id,
+    town
+  from fsdb.busstops
+  where
+    route_id is not null
+    and town is not null
+;
+
+insert into bibus_route
+  select distinct
+    plate,
+    route_id
+  from fsdb.busstops
+  where
+    plate is not null
+    and route_id is not null
+;
+
+
+  
   
 
 
