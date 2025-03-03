@@ -22,24 +22,24 @@ drop table USERS;
 
 -- USERS Table
 CREATE TABLE USERS (
-    UserID CHAR(10) NOT NULL,
-    FullName VARCHAR2(240) NOT NULL,
-    Passport CHAR(20) UNIQUE NOT NULL,
-    BirthDate DATE NOT NULL,
-    Municipality VARCHAR2(50) NOT NULL,
-    Address VARCHAR2(150) NOT NULL,
+    UserID CHAR(10),
+    FullName VARCHAR2(240),
+    Passport CHAR(20) UNIQUE,
+    BirthDate DATE,
+    Municipality VARCHAR2(50),
+    Address VARCHAR2(150),
     Email VARCHAR2(100) UNIQUE,
-    Phone CHAR(9) NOT NULL,
+    Phone CHAR(9),
     CONSTRAINT PK_User PRIMARY KEY (UserID)
 );
 
 -- EDITIONS Table
 CREATE TABLE EDITIONS (
-    ISBN CHAR(13) NOT NULL,
-    Publisher VARCHAR2(100) NOT NULL,
-    MainLanguage VARCHAR2(50) NOT NULL,
+    ISBN CHAR(13),
+    Publisher VARCHAR2(100),
+    MainLanguage VARCHAR2(50),
     OtherLanguages VARCHAR2(50),
-    PubDate DATE NOT NULL,
+    PubDate DATE,
     Lenght VARCHAR2(50),
     Series VARCHAR2(50),
     Place_Of_Publication VARCHAR2(100),
@@ -50,22 +50,22 @@ CREATE TABLE EDITIONS (
 
 -- BOOKS Table
 CREATE TABLE BOOKS (
-    Title VARCHAR2(200) UNIQUE NOT NULL,
+    Title VARCHAR2(200) UNIQUE,
     Alt_Title VARCHAR2(200),
-    MainAuthor VARCHAR2(100) NOT NULL,
+    MainAuthor VARCHAR2(100),
     Alt_Authors VARCHAR2(200),
-    Edition CHAR(13) NOT NULL,
-    Copy CHAR(20) NOT NULL,
+    Edition CHAR(13),
+    Copy CHAR(20),
     CONSTRAINT PK_Book PRIMARY KEY (Title, Edition, Copy),
     CONSTRAINT FK_Book_Edition FOREIGN KEY (Edition) REFERENCES EDITIONS(ISBN) ON DELETE CASCADE
 );
 
 -- COPIES Table
 CREATE TABLE COPIES (
-    Copy_Signature CHAR(20) NOT NULL,
+    Copy_Signature CHAR(20),
     Condition VARCHAR2(20) CHECK (Condition IN ('New', 'Good', 'Worn', 'Very Used', 'Deteriorated')),
     Date_Deregistered DATE,
-    Edition CHAR(13) NOT NULL,
+    Edition CHAR(13),
     Comments VARCHAR2(500),
     CONSTRAINT PK_Copy PRIMARY KEY (Copy_Signature),
     CONSTRAINT FK_Copy_Edition FOREIGN KEY (Edition) REFERENCES EDITIONS(ISBN) ON DELETE CASCADE
@@ -73,11 +73,11 @@ CREATE TABLE COPIES (
 
 -- LOAN Table
 CREATE TABLE LOAN (
-    LoanID CHAR(10) NOT NULL,
-    USERS CHAR(10) NOT NULL,
-    Copy CHAR(20) NOT NULL,
-    LoanDate DATE NOT NULL,
-    ReturnDate DATE NOT NULL,
+    LoanID CHAR(10),
+    USERS CHAR(10),
+    Copy CHAR(20),
+    LoanDate DATE,
+    ReturnDate DATE,
     CONSTRAINT PK_Loan PRIMARY KEY (LoanID),
     CONSTRAINT FK_Loan_User FOREIGN KEY (USERS) REFERENCES USERS(UserID) ON DELETE CASCADE,
     CONSTRAINT FK_Loan_Copy FOREIGN KEY (Copy) REFERENCES COPIES(Copy_Signature) ON DELETE CASCADE
@@ -85,10 +85,10 @@ CREATE TABLE LOAN (
 
 -- RESERVATION Table
 CREATE TABLE RESERVATION (
-    ReservationID CHAR(10) NOT NULL,
-    USERS CHAR(10) NOT NULL,
-    Copy CHAR(20) NOT NULL,
-    ReservationDate DATE NOT NULL,
+    ReservationID CHAR(10),
+    USERS CHAR(10),
+    Copy CHAR(20),
+    ReservationDate DATE,
     CONSTRAINT PK_Reservation PRIMARY KEY (ReservationID),
     CONSTRAINT FK_Reservation_User FOREIGN KEY (USERS) REFERENCES USERS(UserID) ON DELETE CASCADE,
     CONSTRAINT FK_Reservation_Copy FOREIGN KEY (Copy) REFERENCES COPIES(Copy_Signature) ON DELETE CASCADE
@@ -96,21 +96,21 @@ CREATE TABLE RESERVATION (
 
 -- SANCTION Table
 CREATE TABLE SANCTION (
-    SanctionID CHAR(10) NOT NULL,
-    USERS CHAR(10) NOT NULL,
-    WeeksPenalty INT NOT NULL,
-    SanctionDate DATE NOT NULL,
+    SanctionID CHAR(10),
+    USERS CHAR(10),
+    WeeksPenalty INT,
+    SanctionDate DATE,
     CONSTRAINT PK_Sanction PRIMARY KEY (SanctionID),
     CONSTRAINT FK_Sanction_User FOREIGN KEY (USERS) REFERENCES USERS(UserID) ON DELETE CASCADE
 );
 
 -- COMMENTS Table
 CREATE TABLE COMMENTS (
-    CommentID CHAR(10) NOT NULL,
-    USERS CHAR(10) NOT NULL,
-    Book_Title VARCHAR2(200) NOT NULL,
-    Text VARCHAR2(2000) NOT NULL,
-    CommentDate DATE NOT NULL,
+    CommentID CHAR(10),
+    USERS CHAR(10),
+    Book_Title VARCHAR2(200),
+    Text VARCHAR2(2000),
+    CommentDate DATE,
     Vote INT DEFAULT 0,
     CONSTRAINT PK_Comment PRIMARY KEY (CommentID),
     CONSTRAINT FK_Comment_User FOREIGN KEY (USERS) REFERENCES USERS(UserID) ON DELETE CASCADE,
@@ -119,19 +119,19 @@ CREATE TABLE COMMENTS (
 
 -- BIBUS Table
 CREATE TABLE BIBUS (
-    Plate CHAR(8) NOT NULL,
-    LastInspection DATE NOT NULL,
-    NextInspection DATE NOT NULL,
+    Plate CHAR(8),
+    LastInspection DATE,
+    NextInspection DATE,
     CONSTRAINT PK_Bibus PRIMARY KEY (Plate)
 );
 
 -- DRIVER Table
 CREATE TABLE DRIVER (
-    FullName VARCHAR2(100) NOT NULL,
-    Passport CHAR(20) NOT NULL,
-    Phone CHAR(9) NOT NULL,
-    Email VARCHAR2(100) UNIQUE NOT NULL,
-    ContractStart DATE NOT NULL,
+    FullName VARCHAR2(100),
+    Passport CHAR(20),
+    Phone CHAR(9),
+    Email VARCHAR2(100) UNIQUE,
+    ContractStart DATE,
     ContractEnd DATE,
     Assigned_Bibus CHAR(8),
     CONSTRAINT PK_Driver PRIMARY KEY (Passport),
@@ -140,36 +140,36 @@ CREATE TABLE DRIVER (
 
 -- ROUTES Table
 CREATE TABLE ROUTES (
-    RouteID CHAR(5) NOT NULL,
-    RouteDate DATE NOT NULL,
+    RouteID CHAR(5),
+    RouteDate DATE,
     CONSTRAINT PK_Route PRIMARY KEY (RouteID)
 );
 
 -- MUNICIPALITY Table
 CREATE TABLE MUNICIPALITY (
-    Name VARCHAR2(50) NOT NULL,
-    Population INT NOT NULL,
+    Name VARCHAR2(50),
+    Population INT,
     Municipal_Library CHAR(20),
     CONSTRAINT PK_Municipality PRIMARY KEY (Name)
 );
 
 -- MUNICIPAL_LIBRARY Table
 CREATE TABLE MUNICIPAL_LIBRARY (
-    CIF CHAR(20) NOT NULL,
-    InstitutionName VARCHAR2(100) NOT NULL,
+    CIF CHAR(20),
+    InstitutionName VARCHAR2(100),
     FoundationDate DATE,
-    Municipality VARCHAR2(50) NOT NULL,
-    Address VARCHAR2(150) NOT NULL,
+    Municipality VARCHAR2(50),
+    Address VARCHAR2(150),
     Email VARCHAR2(100) UNIQUE,
-    Phone CHAR(9) NOT NULL,
+    Phone CHAR(9),
     CONSTRAINT PK_Municipal_Library PRIMARY KEY (CIF),
     CONSTRAINT FK_MunicipalLibrary_Municipality FOREIGN KEY (Municipality) REFERENCES MUNICIPALITY(Name) ON DELETE CASCADE
 );
 
 -- ROUTE_MUNICIPALITY (Many-to-Many Relationship)
 CREATE TABLE ROUTE_MUNICIPALITY (
-    RouteID CHAR(5) NOT NULL,
-    Municipality VARCHAR2(50) NOT NULL,
+    RouteID CHAR(5),
+    Municipality VARCHAR2(50),
     CONSTRAINT PK_Route_Municipality PRIMARY KEY (RouteID, Municipality),
     CONSTRAINT FK_RouteMunicipality_Route FOREIGN KEY (RouteID) REFERENCES ROUTES(RouteID) ON DELETE CASCADE,
     CONSTRAINT FK_RouteMunicipality_Municipality FOREIGN KEY (Municipality) REFERENCES MUNICIPALITY(Name) ON DELETE CASCADE
@@ -177,8 +177,8 @@ CREATE TABLE ROUTE_MUNICIPALITY (
 
 -- BIBUS_ROUTE (Many-to-Many Relationship)
 CREATE TABLE BIBUS_ROUTE (
-    Plate CHAR(8) NOT NULL,
-    RouteID CHAR(5) NOT NULL,
+    Plate CHAR(8),
+    RouteID CHAR(5),
     CONSTRAINT PK_Bibus_Route PRIMARY KEY (Plate, RouteID),
     CONSTRAINT FK_BibusRoute_Bibus FOREIGN KEY (Plate) REFERENCES BIBUS(Plate) ON DELETE CASCADE,
     CONSTRAINT FK_BibusRoute_Route FOREIGN KEY (RouteID) REFERENCES ROUTES(RouteID) ON DELETE CASCADE
