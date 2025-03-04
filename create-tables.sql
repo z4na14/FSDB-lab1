@@ -50,7 +50,7 @@ CREATE TABLE EDITIONS (
 
 -- BOOKS Table
 CREATE TABLE BOOKS (
-    Title VARCHAR2(200) UNIQUE,
+    Title VARCHAR2(200),
     Alt_Title VARCHAR2(200),
     MainAuthor VARCHAR2(100),
     Alt_Authors VARCHAR2(200),
