@@ -69,10 +69,11 @@ insert into comments
     user_id,
     signature,
     post,
-    to_date(post_date, 'DD-MM-YYYY')
+    to_date(post_date, 'DD-MM-YYYY HH24:MI:SS'),
+    null
   from fsdb.loans
-  where signature in (select copy_ignature from books)
-  and user_id in (select user_id from users)
+  where signature in (select copy_signature from books)
+  and user_id in (select userid from users)
 ;
 
 --Bibus
