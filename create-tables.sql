@@ -99,7 +99,7 @@ CREATE TABLE SANCTION (
 CREATE TABLE COMMENTS (
     CommentID CHAR(10),
     USERS CHAR(10),
-    Copy_signature VARCHAR2(200),
+    Copy_signature CHAR(20),
     Text VARCHAR2(2000),
     CommentDate DATE,
     Vote INT DEFAULT 0,
