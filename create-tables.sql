@@ -60,17 +60,6 @@ CREATE TABLE BOOKS (
     CONSTRAINT FK_Book_Edition FOREIGN KEY (Edition) REFERENCES EDITIONS(ISBN) ON DELETE CASCADE
 );
 
--- COPIES Table
-CREATE TABLE COPIES (
-    Copy_Signature CHAR(20),
-    Condition VARCHAR2(20) CHECK (Condition IN ('New', 'Good', 'Worn', 'Very Used', 'Deteriorated')),
-    Date_Deregistered DATE,
-    Edition CHAR(13),
-    Comments VARCHAR2(500),
-    CONSTRAINT PK_Copy PRIMARY KEY (Copy_Signature),
-    CONSTRAINT FK_Copy_Edition FOREIGN KEY (Edition) REFERENCES EDITIONS(ISBN) ON DELETE CASCADE
-);
-
 -- LOAN Table
 CREATE TABLE LOAN (
     LoanID CHAR(10),
