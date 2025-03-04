@@ -46,7 +46,7 @@ insert into books
     to_date(pub_date, 'YYYY'),
     notes
   from fsdb.acervus
-  where signature not null
+  where signature is not null
   ;
 
 --Loans
@@ -58,8 +58,7 @@ insert into loan
   to_date(date_time, 'DD-MM-YYYY // HH24:MI:SS'),
   to_date(return, 'DD-MM-YYYY // HH24:MI:SS')
   from fsdb.loans
-  where signature not null
-  and signature in books.signature
+  where signature in (select signature in books)
   ;
 
 
