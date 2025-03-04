@@ -135,7 +135,7 @@ CREATE TABLE DRIVER (
     ContractStart DATE,
     ContractEnd DATE,
     Assigned_Bibus CHAR(8),
-    Assigned_Route CHAR(5)
+    Assigned_Route CHAR(5),
     CONSTRAINT PK_Driver PRIMARY KEY (Passport),
     CONSTRAINT FK_Driver_Bibus FOREIGN KEY (Assigned_Bibus, Assigned_Route) REFERENCES BIBUS(Plate, Route_ID) ON DELETE SET NULL
 );
