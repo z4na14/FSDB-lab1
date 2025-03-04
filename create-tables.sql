@@ -13,7 +13,6 @@ drop table COMMENTS;
 drop table SANCTION;
 drop table RESERVATION;
 drop table LOAN;
-drop table COPIES;
 drop table BOOKS;
 drop table EDITIONS;
 drop table USERS;
@@ -54,7 +53,7 @@ CREATE TABLE BOOKS (
     Alt_Title VARCHAR2(200),
     MainAuthor VARCHAR2(100),
     Alt_Authors VARCHAR2(200),
-    Edition CHAR(50),
+    Edition CHAR(20),
     Copy_signature CHAR(20),
     Date_Registered DATE,
     Comments VARCHAR2(500),

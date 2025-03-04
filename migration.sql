@@ -24,7 +24,7 @@ insert into editions
     isbn,
     publisher,
     main_language,
-    other_language,
+    other_languages,
     to_date(pub_date, 'YYYY'),
     extension,
     series,
@@ -41,7 +41,7 @@ insert into books
     alt_title,
     main_author,
     other_authors,
-    edition,
+    isbn,
     signature,
     to_date(pub_date, 'YYYY'),
     notes
