@@ -35,7 +35,7 @@ CREATE TABLE USERS (
 
 -- EDITIONS Table
 CREATE TABLE EDITIONS (
-    ISBN CHAR(13),
+    ISBN CHAR(20),
     Publisher VARCHAR2(100),
     MainLanguage VARCHAR2(50),
     OtherLanguages VARCHAR2(50),

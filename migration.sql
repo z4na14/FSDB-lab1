@@ -8,6 +8,7 @@ insert into users
     surname1||surname2||name,
     passport,
     to_date(birthdate, 'DD-MM-YYYY'),
+    null,
     substr(address, 1, instr(address, ',', 1, 2)),
     email,
     phone
@@ -24,7 +25,7 @@ insert into editions
     publisher,
     main_language,
     other_language,
-    to_date(pub_date, 'DD-MM-YYYY'),
+    to_date(pub_date, 'YYYY'),
     extension,
     series,
     pub_country,
@@ -122,7 +123,9 @@ insert into driver
     lib_email,
     to_date(cont_start, 'DD-MM-YYYY'),
     to_date(cont_end, 'DD-MM-YYYY'),
+    null,
     null
+  from fsdb.busstops
   ;
 
 --Routes
