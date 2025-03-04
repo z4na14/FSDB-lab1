@@ -154,7 +154,7 @@ select distinct
 ;
 
 insert into route_municipality
-  select distinct
+  select
     route_id,
     town
   from fsdb.busstops

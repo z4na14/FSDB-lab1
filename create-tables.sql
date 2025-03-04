@@ -120,9 +120,10 @@ CREATE TABLE COMMENTS (
 -- BIBUS Table
 CREATE TABLE BIBUS (
     Plate CHAR(8),
+    Route_ID CHAR(5),
     LastInspection DATE,
     NextInspection DATE,
-    CONSTRAINT PK_Bibus PRIMARY KEY (Plate)
+    CONSTRAINT PK_Bibus PRIMARY KEY (Plate, Route_ID)
 );
 
 -- DRIVER Table
