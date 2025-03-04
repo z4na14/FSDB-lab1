@@ -58,7 +58,7 @@ insert into loan
   to_date(date_time, 'DD-MM-YYYY // HH24:MI:SS'),
   to_date(return, 'DD-MM-YYYY // HH24:MI:SS')
   from fsdb.loans
-  where signature in (select signature from books)
+  where signature in (select copy_signature from books)
   ;
 
 
@@ -71,7 +71,7 @@ insert into comments
     post,
     to_date(post_date, 'DD-MM-YYYY')
   from fsdb.loans
-  where signature in (select signature from books)
+  where signature in (select copy_ignature from books)
   and user_id in (select user_id from users)
 ;
 
