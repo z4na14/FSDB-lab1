@@ -42,20 +42,12 @@ insert into books
     main_author,
     other_authors,
     edition,
-    national_lib_id
-  from fsdb.acervus
-  ;
-
---Copies
-insert into copies
-  select distinct
+    national_lib_id,
     signature,
     null,
-    to_date(pub_date, 'DD-MM-YYYY'),
-    edition,
+    to_date(pub_date, 'YYYY'),
     notes
-    from fsdb.acervus
-    where
+  from fsdb.acervus
   ;
 
 --Loans
@@ -74,20 +66,6 @@ and insert into loan(users, loanDate, ReturnDate)
   from fsdb.loans
 ;
 
---Reservation
-insert into Reservation(ReservationId, copy, reservationDate)
-  select distinct
-    null,
-    signature,
-    null,
-  from fsdb.acervus
-  where
-    signature is not null
-  
-  and insert into Reservation(users)
-  user_id
-  from fsdb.loans
-;
 
 --Sanction
 insert into sanction(users)
