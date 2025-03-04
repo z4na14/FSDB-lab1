@@ -58,7 +58,7 @@ insert into loan
   to_date(date_time, 'DD-MM-YYYY // HH24:MI:SS'),
   to_date(return, 'DD-MM-YYYY // HH24:MI:SS')
   from fsdb.loans
-  where signature in (select signature in books)
+  where signature in (select signature from books)
   ;
 
 
