@@ -51,13 +51,14 @@ insert into books
 
 --Loans
 insert into loan
+  select distinct
   null,
   user_id,
   signature,
   to_date(date_time, 'DD-MM-YYYY // HH24:MI:SS'),
   to_date(return, 'DD-MM-YYYY // HH24:MI:SS')
   from fsdb.loans
-  where signature not null,
+  where signature not null
   and signature in books.signature
   ;
 
