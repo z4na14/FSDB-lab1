@@ -63,11 +63,16 @@ insert into loan
 
 
 --Comments
-insert into comments(users, text)
+insert into comments
   select distinct
+    null,
     user_id,
-    post
+    signature,
+    post,
+    to_date(post_date, 'DD-MM-YYYY')
   from fsdb.loans
+  where signature in (select signature from books)
+  and user_id in (select user_id from users)
 ;
 
 --Bibus
