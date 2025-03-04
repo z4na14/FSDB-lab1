@@ -46,31 +46,21 @@ insert into books
     to_date(pub_date, 'YYYY'),
     notes
   from fsdb.acervus
+  where signature is not null
   ;
 
 --Loans
-insert into loan(loanId, copy)
+insert into loan
   select distinct
-    null,
-    signature,
-  from fsdb.acervus
-  where
-    and signature is not null
-and insert into loan(users, loanDate, ReturnDate)
-  select distinct
-    user_id,
-    to_date(date_time, 'DD-MM-YYYY'),
-    to_date(return,  'DD-MM-YYYY')
+  null,
+  user_id,
+  signature,
+  to_date(date_time, 'DD-MM-YYYY // HH24:MI:SS'),
+  to_date(return, 'DD-MM-YYYY // HH24:MI:SS')
   from fsdb.loans
-;
+  where signature in (select signature in books)
+  ;
 
-
---Sanction
-insert into sanction(users)
-  select distinct
-    user_id
-  from fsdb.loans
-;
 
 --Comments
 insert into comments(users, text)
