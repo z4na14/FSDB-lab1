@@ -140,11 +140,17 @@ insert into municipality
   from fsdb.busstops
   ;
 
-insert into municipal_library(municipality, address)
-  select distinct
-    town,
-    address
-  from fsdb.busstops
+insert into municipal_library
+select distinct
+    user_id,
+    name,
+    to_date(birthdate,'DD-MM-YYYY'),
+    null,
+    address,
+    email,
+    phone
+  from fsdb.loans
+  where name like 'Biblioteca%' 
 ;
 
 insert into route_municipality
