@@ -56,6 +56,8 @@ CREATE TABLE BOOKS (
     Alt_Authors VARCHAR2(200),
     Edition CHAR(50),
     Copy_signature CHAR(20),
+    Date_Registered DATE,
+    Comments VARCHAR2(500),
     CONSTRAINT PK_Book PRIMARY KEY (Copy_signature),
     CONSTRAINT FK_Book_Edition FOREIGN KEY (Edition) REFERENCES EDITIONS(ISBN) ON DELETE CASCADE
 );
