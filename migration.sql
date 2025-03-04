@@ -42,9 +42,7 @@ insert into books
     main_author,
     other_authors,
     edition,
-    national_lib_id,
     signature,
-    null,
     to_date(pub_date, 'YYYY'),
     notes
   from fsdb.acervus
