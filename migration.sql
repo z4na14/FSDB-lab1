@@ -107,8 +107,9 @@ insert into comments(users, text)
 insert into bibus
   select distinct
     plate,
-    to_date(last_itv, 'DD-MM-YYYY'),
-    to_date(next_itv, 'DD-MM-YYYY')
+    route_id
+    to_date(last_itv, 'DD-MM-YYYY // HH24:MI:SS'),
+    to_date(next_itv, 'DD-MM-YYYY // HH24:MI:SS')
   from fsdb.busstops
 ;
 
